@@ -8,11 +8,10 @@
 		<version>2.5.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>de.dhbwravensburg.vs</groupId>
-	<artifactId>mymoviedatabase</artifactId>
+	<groupId>de.me</groupId>
+	<artifactId>howmanyclicks</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>My Movie Database</name>
-	<description>Aufgaben für Web-Programmierung</description>
+	<name>How Many clicks</name>
 
 	<properties>
 		<java.version>16</java.version>
