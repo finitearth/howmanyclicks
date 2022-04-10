@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>How many clicks?</title>
+    <link th:href="@{css/bootstrap.min.css}" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+
+<div class="bg-black">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col sm-8" >
+            <iframe width="75%" height="480"
+                    th:src="${'https://www.youtube.com/embed/' + vid.url +
+                    '?autoplay=1&controls=0&showinfo=0&start=' + vid.start_vid +'&end=' + (vid.start_vid+10)}"
+                    frameborder="0" allow="autoplay; gyroscope;"></iframe>
+        </div>
+
+        <div class="col-4 sm">
+            <p><br><br><br><br><br><br><br><br></p>
+            <div id="counter"></div>
+        </div>
+</div>
+</div>
+</div>
+
+<script>
+        distance = 10000;
+        var x = setInterval(function() {
+          seconds = distance/1000
+          document.getElementById("counter").innerHTML = "<h1 id='counter' style='color: white;'>"+ seconds + "</h1>";
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("counter").outerHTML = `
+                <h1 style="color: white;">HOW MANY CLICKS?</h1>
+                <div class="input-group input-group-sm mb-3">
+                    <input type="number" min="0" id="guess" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" id="submit" type="button">Guess!</button>
+                    </div>
+                </div>`;
+                document.getElementById('submit').addEventListener('click', function() {
+                    let guess = document.getElementById('guess').value;
+                    if (!isNaN(guess) && !isNaN(parseFloat(guess))){
+                        window.open('http://localhost:8080/result?g=' + guess, '_self');
+                    }else{
+                        alert('Input is not a Number!!');
+                    }
+                });
+          }
+          distance = distance - 1000;
+        }, 1000);
+
+
+</script>
+</body>
+</html>
